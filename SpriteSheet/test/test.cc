@@ -1,16 +1,20 @@
-#include "../SpriteSheetSprite.hh"
+#include "../Animation.hh"
 
 int main(int argc, char *argv[])
 {
     sf::RenderWindow window(sf::VideoMode(800, 800), "SpriteSheet Test");
 
-    SpriteSheetSprite sprite("./ironman.jpg", 1, 4, sf::Vector2f(205, 254));
-    int rows[4] = { 1, 1, 1, 1 };
+    sf::Texture texture;
+    texture.loadFromFile("./index.png");
+    sf::Sprite sprite(texture);
 
+    Animation animation(&texture, sf::Vector2u(9, 8), 1);
+    float dt = 0;
+    
     sf::Event event;
     sf::Clock clock;
     while (window.isOpen()) {
-        window.setFramerateLimit(60);
+        dt = clock.restart().asSeconds();
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
@@ -18,14 +22,12 @@ int main(int argc, char *argv[])
             }
             
             if (event.type == sf::Event::KeyPressed) {
-                sprite.EventMove(event.key.code, 10, rows);
+                
             }
         }
-
-        if (clock.getElapsedTime().asSeconds() > 0.2) {
-            sprite.Animate();
-            clock.restart();
-        }
+        
+        animation.Animate(2, dt, true);
+        sprite.setTextureRect(animation.GetUVRect());
 
         window.clear();
         window.draw(sprite);

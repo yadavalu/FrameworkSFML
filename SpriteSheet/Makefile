@@ -2,7 +2,7 @@ CXX := g++
 CXXFLAGS := -std=c++17 -g
 LDFLAGS := -lsfml-system -lsfml-graphics -lsfml-window
 
-OBJS := SpriteSheetSprite.o
+OBJS := Animation.o
 
 all: $(OBJS)
 
