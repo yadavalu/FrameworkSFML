@@ -42,3 +42,8 @@ sf::IntRect Animation::GetUVRect() const
     return uvrect;
 }
 
+sf::Vector2f Animation::GetSize() const
+{
+    return sf::Vector2f(uvrect.width, uvrect.height);
+}
+

@@ -1,16 +1,18 @@
-#include "../Animation.hh"
+//#include "../Animation.hh"
+#include "../AnimatedSprite.hh"
 
 int main(int argc, char *argv[])
 {
     sf::RenderWindow window(sf::VideoMode(800, 800), "SpriteSheet Test");
 
     sf::Texture texture;
-    texture.loadFromFile("./index.png");
-    sf::Sprite sprite(texture);
+    texture.loadFromFile("./sprite.png");
+    //sf::Sprite sprite(texture);
 
-    Animation animation(&texture, sf::Vector2u(9, 8), 1);
+    //Animation animation(&texture, sf::Vector2u(9, 4), 1);
+    AnimatedSprite sprite(&texture, sf::Vector2u(9, 4), 1, 10);
     float dt = 0;
-    
+
     sf::Event event;
     sf::Clock clock;
     while (window.isOpen()) {
@@ -20,14 +22,11 @@ int main(int argc, char *argv[])
                 window.close();
                 break;
             }
-            
-            if (event.type == sf::Event::KeyPressed) {
-                
-            }
         }
         
-        animation.Animate(2, dt, true);
-        sprite.setTextureRect(animation.GetUVRect());
+        //animation.Animate(2, dt, true);
+        //sprite.setTextureRect(animation.GetUVRect());
+        sprite.Update(dt);
 
         window.clear();
         window.draw(sprite);

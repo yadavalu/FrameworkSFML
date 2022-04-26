@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 
-class Animation//: public sf::Drawable
+class Animation
 {
 public:
     Animation(sf::Texture *, sf::Vector2u, float);
@@ -13,10 +13,10 @@ public:
     // Keep faceright bool true if there is a seperate sprite for left side
     void Animate(unsigned int, float, bool);
     sf::IntRect GetUVRect() const;
+    
+    sf::Vector2f GetSize() const;
 
 private:
-    //virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
-
     sf::Vector2u count, current;
     
     float t, dt;
