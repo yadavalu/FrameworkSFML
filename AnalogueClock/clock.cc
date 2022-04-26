@@ -3,48 +3,45 @@
 AnalogueClock::AnalogueClock(unsigned _time_left, unsigned _x, unsigned _y,
 		   unsigned _radius)
   : time_left(_time_left), x(_x), y(_y), radius(_radius)
-{
+{ 
+  h_hand.setOrigin(h_hand.getGlobalBounds().width / 2,
+                   h_hand.getGlobalBounds().height - 25);
+  h_hand.setFillColor(sf::Color::White);
+  h_hand.setPosition(x,y);
+  m_hand.setOrigin(m_hand.getGlobalBounds().width / 2,
+                   m_hand.getGlobalBounds().height - 25);
+  m_hand.setFillColor(sf::Color::White);
+  m_hand.setPosition(x,y);
+  s_hand.setOrigin(s_hand.getGlobalBounds().width / 2,
+                   s_hand.getGlobalBounds().height - 25);
+  s_hand.setFillColor(sf::Color::Red);
+  s_hand.setPosition(x,y);
+  h_hand.setSize(sf::Vector2f(5, 180));
+  m_hand.setSize(sf::Vector2f(3, 240));
+  s_hand.setSize(sf::Vector2f(2, 250));
   clock.setRadius(radius);
   clock.setFillColor(sf::Color::White);
   clock.setPosition(x, y);
-  h_hand.setPosition(x+radius/2, y+radius/2);
-  h_hand.setSize(sf::Vector2f(2, (1/2)*(radius/2)));
-  h_hand.setFillColor(sf::Color::Red);
-  m_hand.setPosition(x+radius/2, y+radius/2);
-  m_hand.setSize(sf::Vector2f(2, (3/4)*(radius/2)));
-  m_hand.setFillColor(sf::Color::Red);
-  s_hand.setPosition(x+radius/2, y+radius/2);
-  s_hand.setSize(sf::Vector2f(2, radius/2));
-  s_hand.setFillColor(sf::Color::Red);
 }
 
 AnalogueClock::~AnalogueClock()
 {
+  delete ptm;
 }
 
 void AnalogueClock::HandMove(sf::RectangleShape& hand)
 {
+  hand.setPosition(hand.getPosition().x + hand.getOrigin().x, hand.getPosition().y + hand.getOrigin().y);
 }
 
 void AnalogueClock::Start()
 {
-  sf::Clock clock;
-  int time_taken;
-  do
-    {
-      if (clock.getElapsedTime().asSeconds() >= 1.0)
-	{
-	  time_left--;
-	  time_taken++;
-	  clock.restart();
-	  if (time_taken % 3600 == 0)
-	    HandMove(h_hand);
-	  else if (time_taken % 60 == 0)
-	    HandMove(m_hand);
-	  else
-	    HandMove(s_hand);
-	}
-    } while (time_left > 0);
+  long int currentTime = _clock.getElapsedTime().asSeconds();
+  ptm = localtime(&currentTime);
+
+  h_hand.setRotation(ptm->tm_hour*30 + (ptm->tm_min/2));
+  m_hand.setRotation(ptm->tm_min*6 + (ptm->tm_sec/12));
+  s_hand.setRotation(ptm->tm_sec*6);
 }
 
 void AnalogueClock::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -54,4 +51,3 @@ void AnalogueClock::draw(sf::RenderTarget& target, sf::RenderStates states) cons
   target.draw(m_hand);
   target.draw(s_hand);
 }
-

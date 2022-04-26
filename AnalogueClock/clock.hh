@@ -5,6 +5,8 @@
 
 class AnalogueClock : public sf::Drawable
 {
+  sf::Clock _clock;
+  struct tm * ptm;
   unsigned time_left, x, y, radius;
   sf::CircleShape clock;
   sf::RectangleShape h_hand, m_hand, s_hand;
@@ -15,7 +17,7 @@ public:
   void SetPosition(unsigned, unsigned);
   void SetSize(unsigned);
   void Start();
-  virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+  virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
 };
 
 #endif

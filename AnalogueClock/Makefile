@@ -5,9 +5,9 @@ OBJS = clock.o
 TESTFILE = test/main.o
 TESTOUT = test/test
 
-all: clean $(OBJS)
+all: clean $(OBJS) example
 
-example: all $(TESTFILE)
+example: $(TESTFILE)
 	$(CXX) $(TESTFILE) $(LIBS) $(CXXFLAGS) -o $(TESTOUT) $(OBJS)
 clean:
 	rm -rf $(OBJS) $(TESTOUT)
