@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
     sf::RenderWindow window(sf::VideoMode(800, 800), "SpriteSheet Test");
 
     SpriteSheetSprite sprite("./ironman.jpg", 1, 4, sf::Vector2f(205, 254));
-    int columns[4] = { 1, 1, 1, 1 };
+    int rows[4] = { 1, 1, 1, 1 };
 
     sf::Event event;
     sf::Clock clock;
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
             }
             
             if (event.type == sf::Event::KeyPressed) {
-                sprite.EventMove(event.key.code, 10, columns);
+                sprite.EventMove(event.key.code, 10, rows);
             }
         }
 
