@@ -28,6 +28,7 @@ public:
   inline struct Time GetTime() { return time; }
   void SetPosition(unsigned, unsigned);
   void SetSize(unsigned);
+  void SetColour(sf::Color, sf::Color, sf::Color, sf::Color);
   void Start();
   virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
 };

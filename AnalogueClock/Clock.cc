@@ -6,17 +6,14 @@ AnalogueClock::AnalogueClock(unsigned _x, unsigned _y, unsigned _radius)
   current_time = std::time(0);
   
   h_hand.setOrigin(h_hand.getGlobalBounds().width / 2,
-                   h_hand.getGlobalBounds().height - 25);
+                   h_hand.getGlobalBounds().height);
   m_hand.setOrigin(m_hand.getGlobalBounds().width / 2,
-                   m_hand.getGlobalBounds().height - 25);
+                   m_hand.getGlobalBounds().height);
   s_hand.setOrigin(s_hand.getGlobalBounds().width / 2,
-                   s_hand.getGlobalBounds().height - 25);
-  h_hand.setFillColor(sf::Color::White);
-  m_hand.setFillColor(sf::Color::White);
-  s_hand.setFillColor(sf::Color::Red);
-  
-  clock.setFillColor(sf::Color::Blue);
+                   s_hand.getGlobalBounds().height);
 
+  // Default Colour Scheme. To set manually, manually set Colour via SetColour
+  SetColour(sf::Color::White, sf::Color::White, sf::Color::Red, sf::Color::Blue);
   SetPosition(x, y);
   SetSize(radius);
 }
@@ -29,6 +26,14 @@ AnalogueClock::~AnalogueClock()
 void AnalogueClock::HandMove(sf::RectangleShape& hand)
 {
   hand.setPosition(hand.getPosition().x + hand.getOrigin().x, hand.getPosition().y + hand.getOrigin().y);
+}
+
+void AnalogueClock::SetColour(sf::Color h_colour, sf::Color m_colour, sf::Color s_colour, sf::Color c_clock)
+{
+  h_hand.setFillColor(h_colour);
+  m_hand.setFillColor(m_colour);
+  s_hand.setFillColor(s_colour);
+  clock. setFillColor(c_clock );
 }
 
 void AnalogueClock::SetSize(unsigned _radius)
