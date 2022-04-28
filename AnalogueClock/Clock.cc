@@ -1,8 +1,7 @@
-#include "clock.hh"
+#include "Clock.hh"
 
-AnalogueClock::AnalogueClock(unsigned _time_left, unsigned _x, unsigned _y,
-		   unsigned _radius)
-  : time_left(_time_left), x(_x), y(_y), radius(_radius)
+AnalogueClock::AnalogueClock(unsigned _x, unsigned _y, unsigned _radius)
+  : x(_x), y(_y), radius(_radius)
 { 
   h_hand.setOrigin(h_hand.getGlobalBounds().width / 2,
                    h_hand.getGlobalBounds().height - 25);
@@ -36,9 +35,8 @@ void AnalogueClock::HandMove(sf::RectangleShape& hand)
 
 void AnalogueClock::Start()
 {
-  long int currentTime = _clock.getElapsedTime().asSeconds();
-  ptm = localtime(&currentTime);
-
+  long int current_time = std::time(NULL); // TODO: set Time
+  ptm = localtime(&current_time);
   h_hand.setRotation(ptm->tm_hour*30 + (ptm->tm_min/2));
   m_hand.setRotation(ptm->tm_min*6 + (ptm->tm_sec/12));
   s_hand.setRotation(ptm->tm_sec*6);

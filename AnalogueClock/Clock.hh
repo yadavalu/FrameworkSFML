@@ -5,14 +5,13 @@
 
 class AnalogueClock : public sf::Drawable
 {
-  sf::Clock _clock;
   struct tm * ptm;
-  unsigned time_left, x, y, radius;
+  unsigned x, y, radius;
   sf::CircleShape clock;
   sf::RectangleShape h_hand, m_hand, s_hand;
   void HandMove(sf::RectangleShape&);
 public:
-  AnalogueClock(unsigned, unsigned, unsigned, unsigned);
+  AnalogueClock(unsigned, unsigned, unsigned);
   ~AnalogueClock();
   void SetPosition(unsigned, unsigned);
   void SetSize(unsigned);

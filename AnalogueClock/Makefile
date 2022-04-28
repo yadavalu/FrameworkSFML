@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -g
 LIBS = -lsfml-window -lsfml-system -lsfml-graphics
-OBJS = clock.o
+OBJS = Clock.o
 TESTFILE = test/main.o
 TESTOUT = test/test
 
