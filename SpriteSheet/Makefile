@@ -1,6 +1,6 @@
 CXX := g++
 CXXFLAGS := -std=c++17 -g
-LDFLAGS := -lsfml-system -lsfml-graphics -lsfml-window
+LDFLAGS := -lsfml-system -lsfml-graphics -lsfml-window -ljsoncpp
 
 OBJS := Animation.o AnimatedSprite.o
 

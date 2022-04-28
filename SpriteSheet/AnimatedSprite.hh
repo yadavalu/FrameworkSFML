@@ -2,6 +2,7 @@
 #define __ANIMATED_SPRITE_FRAMEWORK_HH__
 
 #include "Animation.hh"
+#include "Motion.hh"
 
 
 class AnimatedSprite: public sf::Drawable
@@ -10,6 +11,7 @@ public:
     AnimatedSprite(sf::Texture *, sf::Vector2u, float, float);
     ~AnimatedSprite();
 
+    void SetKeys(struct Key *);
     void Update(float dt);
 
 private:
@@ -18,6 +20,9 @@ private:
     Animation animation;
     
     sf::RectangleShape shape;
+
+    struct Key *keys;
+    struct Key currentkey;
 
     unsigned int row;
     float velocity;
