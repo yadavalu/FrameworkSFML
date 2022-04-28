@@ -7,8 +7,16 @@ int main(int argc, char *argv[])
 
     sf::Texture texture;
     texture.loadFromFile("./sprite.png");
+    sf::Texture bg;
+    bg.loadFromFile("./bg.jpg");
+    bg.setRepeated(true);
+    bg.setSmooth(true);
+    sf::RectangleShape shape(sf::Vector2f(1440, 960));
+    shape.setTexture(&bg);
+    shape.setPosition(0, 0);
 
-    AnimatedSprite sprite(&texture, sf::Vector2u(9, 4), 1, 1);
+    AnimatedSprite sprite(&texture, sf::Vector2u(9, 4), 1, 50);
+    sprite.SetPosition(sf::Vector2f(256, 256));
     float dt = 0;
 
     struct Key up { sf::Keyboard::Up, 0, 0, -2 };
@@ -34,13 +42,13 @@ int main(int argc, char *argv[])
             }
         }
         
-        //std::cout << dt << std::endl;
         sprite.Update(dt);
 
         view.setCenter(sprite.GetPosition());
 
         window.clear();
         window.setView(view);
+        window.draw(shape);
         window.draw(sprite);
         window.display();
     }

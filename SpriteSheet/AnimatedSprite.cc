@@ -44,6 +44,11 @@ sf::Vector2f AnimatedSprite::GetPosition() const
     return shape.getPosition();
 }
 
+void AnimatedSprite::SetPosition(sf::Vector2f vec)
+{
+    shape.setPosition(vec);
+}
+
 sf::RectangleShape AnimatedSprite::GetSprite() const
 {
     return shape;

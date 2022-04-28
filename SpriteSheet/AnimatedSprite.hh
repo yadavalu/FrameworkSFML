@@ -16,6 +16,7 @@ public:
     
     sf::Vector2f GetSize() const;
     sf::Vector2f GetPosition() const;
+    void SetPosition(sf::Vector2f);
     sf::RectangleShape GetSprite() const;
 
 
