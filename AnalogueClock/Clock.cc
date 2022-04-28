@@ -4,24 +4,21 @@ AnalogueClock::AnalogueClock(unsigned _x, unsigned _y, unsigned _radius)
   : x(_x), y(_y), radius(_radius)
 { 
   current_time = std::time(0);
+  
   h_hand.setOrigin(h_hand.getGlobalBounds().width / 2,
                    h_hand.getGlobalBounds().height - 25);
-  h_hand.setFillColor(sf::Color::White);
-  h_hand.setPosition(x,y);
   m_hand.setOrigin(m_hand.getGlobalBounds().width / 2,
                    m_hand.getGlobalBounds().height - 25);
-  m_hand.setFillColor(sf::Color::White);
-  m_hand.setPosition(x,y);
   s_hand.setOrigin(s_hand.getGlobalBounds().width / 2,
                    s_hand.getGlobalBounds().height - 25);
+  h_hand.setFillColor(sf::Color::White);
+  m_hand.setFillColor(sf::Color::White);
   s_hand.setFillColor(sf::Color::Red);
-  s_hand.setPosition(x,y);
-  h_hand.setSize(sf::Vector2f(5, 180));
-  m_hand.setSize(sf::Vector2f(3, 240));
-  s_hand.setSize(sf::Vector2f(2, 250));
-  clock.setRadius(radius);
-  clock.setFillColor(sf::Color::White);
-  clock.setPosition(x, y);
+  
+  clock.setFillColor(sf::Color::Blue);
+
+  SetPosition(x, y);
+  SetSize(radius);
 }
 
 AnalogueClock::~AnalogueClock()
@@ -32,6 +29,26 @@ AnalogueClock::~AnalogueClock()
 void AnalogueClock::HandMove(sf::RectangleShape& hand)
 {
   hand.setPosition(hand.getPosition().x + hand.getOrigin().x, hand.getPosition().y + hand.getOrigin().y);
+}
+
+void AnalogueClock::SetSize(unsigned _radius)
+{
+  radius = _radius;
+  clock.setRadius(radius);
+  h_hand.setSize(sf::Vector2f(2.f, 3*radius/4));
+  m_hand.setSize(sf::Vector2f(1.5, radius/3));
+  s_hand.setSize(sf::Vector2f(1.f, radius/2));
+  // Since radius is changed, this function needs to be called here again
+  SetPosition(x, y);
+}
+
+void AnalogueClock::SetPosition(unsigned _x, unsigned _y)
+{
+  x = _x; y = _y;
+  clock.setPosition(x, y);
+  h_hand.setPosition(x+radius, y+radius);
+  m_hand.setPosition(x+radius, y+radius);
+  s_hand.setPosition(x+radius, y+radius);
 }
 
 void AnalogueClock::SetTime(unsigned _h, unsigned _m, unsigned _s)
