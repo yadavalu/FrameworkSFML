@@ -13,6 +13,11 @@ public:
 
     void SetKeys(struct Key *);
     void Update(float dt);
+    
+    sf::Vector2f GetSize() const;
+    sf::Vector2f GetPosition() const;
+    sf::RectangleShape GetSprite() const;
+
 
 private:
     virtual void draw(sf::RenderTarget&, sf::RenderStates) const;

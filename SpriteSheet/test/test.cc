@@ -1,4 +1,3 @@
-//#include "../Animation.hh"
 #include "../AnimatedSprite.hh"
 
 int main(int argc, char *argv[])
@@ -9,7 +8,7 @@ int main(int argc, char *argv[])
     sf::Texture texture;
     texture.loadFromFile("./sprite.png");
 
-    AnimatedSprite sprite(&texture, sf::Vector2u(9, 4), 1, 24);
+    AnimatedSprite sprite(&texture, sf::Vector2u(9, 4), 1, 1);
     float dt = 0;
 
     struct Key up { sf::Keyboard::Up, 0, 0, -2 };
@@ -29,12 +28,19 @@ int main(int argc, char *argv[])
                 window.close();
                 break;
             }
+
+            if (event.type == sf::Event::Resized) {
+                view.setSize(512 * float(window.getSize().x)/float(window.getSize().y), 512 );
+            }
         }
         
         //std::cout << dt << std::endl;
-        sprite.Update(dt * 2);
+        sprite.Update(dt);
+
+        view.setCenter(sprite.GetPosition());
 
         window.clear();
+        window.setView(view);
         window.draw(sprite);
         window.display();
     }
