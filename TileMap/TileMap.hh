@@ -5,17 +5,17 @@
 #include <vector>
 #include <array>
 
-template<int rows, int cols> class TileMap : public sf::Drawable
+class TileMap
 {
   sf::Texture tile_sheet;
   std::vector<sf::IntRect> tiles;
   sf::Sprite tile;
-  std::array<std::array<int, rows>, cols> map;
+  std::vector<std::vector<int>> map;
   unsigned tile_height, tile_width;
 public:
-  TileMap(std::string, std::array<std::array<int, rows>, cols>, std::vector<sf::IntRect>, int, int);
+  TileMap(std::string, std::vector<std::vector<int>>, std::vector<sf::IntRect>, int, int);
   ~TileMap();
-  virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
+  void Loop(sf::RenderWindow&);
 };
 
 #endif
