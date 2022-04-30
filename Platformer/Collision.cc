@@ -27,7 +27,7 @@ bool Collision::CheckCollision(Collision& body, float momentumtransfer)
     float inty = dy - (halfsize.y + _halfsize.y);
 
     if (intx < 0 && inty < 0) {
-        momentumtransfer = std::min(std::max(momentumtransfer, 0), 1);
+        //momentumtransfer = std::min(std::max(momentumtransfer, 0), 1);
 
         if (abs(intx) > abs(inty)) {
             if (dx > 0) {
