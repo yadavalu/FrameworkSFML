@@ -3,12 +3,16 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Collision.hh"
+
 
 class Platform: public sf::Drawable
 {
 public:
-    Platform(sf::RectangleShape);
+    Platform(sf::Texture *, sf::Vector2f, sf::Vector2f);
     ~Platform();
+
+    Collision GetCollider() const;
 
 private:
     sf::RectangleShape rect;

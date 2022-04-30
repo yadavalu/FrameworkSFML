@@ -7,7 +7,7 @@
 class Collision
 {
 public:
-    Collision(sf::RectangleShape&);
+    Collision(sf::RectangleShape);
     ~Collision();
 
     bool CheckCollision(Collision&, float);
@@ -18,7 +18,7 @@ public:
 
 
 private:
-    sf::RectangleShape& rect;
+    sf::RectangleShape rect;
 };
 
 
