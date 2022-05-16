@@ -6,7 +6,7 @@ TEST = test/main.o
 OUT = test/test
 
 all: $(OBJS)
-example: clear all $(TEST)
+example: $(TEST)
 	$(CXX) $(CXXFLAGS) $(LIBS) $(TEST) $(OBJS) -o $(OUT)
 clear:
 	rm -rf $(OUT) $(OBJS) $(TEST)

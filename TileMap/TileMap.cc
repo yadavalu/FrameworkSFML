@@ -16,8 +16,8 @@ void TileMap::Loop(sf::RenderWindow& window)
   for (int row = 0; row < map.size(); row++)
     for (int col = 0; col < map[0].size(); col++)
       {
-	tile.setTextureRect(tiles[map[row][col] - 1]);
-	tile.setPosition((row * tile_width), (col * tile_width));
+        tile.setTextureRect(tiles[map[row][col]]);
+        tile.setPosition((row * tile_width), (col * tile_width));
+        window.draw(tile);
       }
-  window.draw(tile);
 }
