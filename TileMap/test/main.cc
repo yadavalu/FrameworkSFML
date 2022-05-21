@@ -2,7 +2,7 @@
 
 int main()
 {
-  sf::RenderWindow window(sf::VideoMode(800, 800), "Tile Map");
+  sf::RenderWindow window(sf::VideoMode(1000, 1000), "Tile Map");
 
   unsigned width = 32, height = 32;
   const int tmap_width = 20, tmap_height = 20;
@@ -56,6 +56,7 @@ int main()
     }};
   
   TileMap tilemap("./tilemap.png", tmap, tiles, 32, 32);
+  tilemap.SetPosition(200, 200);
   
   sf::Event event;
   while (window.isOpen())
