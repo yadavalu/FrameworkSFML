@@ -21,7 +21,7 @@ void AnimatedSprite::SetKeys(struct Key *keys)
 void AnimatedSprite::Update(float dt)
 {
     sf::Vector2f pos(0, 0);
-    for (int i = 0; i < sizeof(keys)/2; i++) {
+    for (int i = 0; i < sizeof(keys); i++) {
         if (sf::Keyboard::isKeyPressed(keys[i].key)) currentkey = keys[i];
     }
 
